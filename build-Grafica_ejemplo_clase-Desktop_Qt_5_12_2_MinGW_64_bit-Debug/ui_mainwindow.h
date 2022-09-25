@@ -12,6 +12,8 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGraphicsView>
+#include <QtWidgets/QLCDNumber>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -26,6 +28,11 @@ public:
     QWidget *centralwidget;
     QGraphicsView *graphicsView;
     QPushButton *pushButton;
+    QLabel *cronometro;
+    QPushButton *botonInicio;
+    QLabel *temporizador;
+    QLCDNumber *puntosNum;
+    QLabel *puntosLit;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -33,7 +40,13 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
+        MainWindow->setEnabled(true);
         MainWindow->resize(800, 600);
+        MainWindow->setMouseTracking(false);
+        MainWindow->setTabletTracking(false);
+        MainWindow->setAcceptDrops(false);
+        MainWindow->setAutoFillBackground(false);
+        MainWindow->setAnimated(true);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         graphicsView = new QGraphicsView(centralwidget);
@@ -44,15 +57,45 @@ public:
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(650, 120, 75, 23));
         QFont font;
-        font.setFamily(QString::fromUtf8("Palace Script MT"));
         font.setPointSize(16);
         font.setItalic(true);
         pushButton->setFont(font);
         pushButton->setAutoFillBackground(false);
+        cronometro = new QLabel(centralwidget);
+        cronometro->setObjectName(QString::fromUtf8("cronometro"));
+        cronometro->setGeometry(QRect(650, 40, 81, 20));
+        botonInicio = new QPushButton(centralwidget);
+        botonInicio->setObjectName(QString::fromUtf8("botonInicio"));
+        botonInicio->setGeometry(QRect(660, 170, 83, 29));
+        temporizador = new QLabel(centralwidget);
+        temporizador->setObjectName(QString::fromUtf8("temporizador"));
+        temporizador->setGeometry(QRect(660, 40, 91, 41));
+        QFont font1;
+        font1.setPointSize(14);
+        font1.setBold(true);
+        temporizador->setFont(font1);
+        puntosNum = new QLCDNumber(centralwidget);
+        puntosNum->setObjectName(QString::fromUtf8("puntosNum"));
+        puntosNum->setEnabled(true);
+        puntosNum->setGeometry(QRect(720, 250, 71, 71));
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("Segoe UI Semilight"));
+        font2.setPointSize(12);
+        font2.setBold(false);
+        puntosNum->setFont(font2);
+        puntosNum->setContextMenuPolicy(Qt::DefaultContextMenu);
+        puntosLit = new QLabel(centralwidget);
+        puntosLit->setObjectName(QString::fromUtf8("puntosLit"));
+        puntosLit->setGeometry(QRect(630, 270, 81, 20));
+        QFont font3;
+        font3.setPointSize(12);
+        font3.setBold(true);
+        puntosLit->setFont(font3);
+        puntosLit->setTextFormat(Qt::AutoText);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 21));
+        menubar->setGeometry(QRect(0, 0, 800, 25));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -67,6 +110,10 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
         pushButton->setText(QApplication::translate("MainWindow", "Mover", nullptr));
+        cronometro->setText(QString());
+        botonInicio->setText(QApplication::translate("MainWindow", "Inicio", nullptr));
+        temporizador->setText(QApplication::translate("MainWindow", "C.regresiva", nullptr));
+        puntosLit->setText(QApplication::translate("MainWindow", "TextLabel", nullptr));
     } // retranslateUi
 
 };

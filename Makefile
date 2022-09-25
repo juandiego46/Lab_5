@@ -222,6 +222,7 @@ Makefile: Grafica_ejemplo_clase/Grafica_ejemplo_clase.pro C:/Users/ASUS/Document
 		C:/Users/ASUS/Documents/Qt/5.12.2/mingw73_64/mkspecs/features/qt_config.prf \
 		C:/Users/ASUS/Documents/Qt/5.12.2/mingw73_64/mkspecs/win32-g++/qmake.conf \
 		C:/Users/ASUS/Documents/Qt/5.12.2/mingw73_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		C:/Users/ASUS/Documents/Qt/5.12.2/mingw73_64/mkspecs/features/exclusive_builds.prf \
 		C:/Users/ASUS/Documents/Qt/5.12.2/mingw73_64/mkspecs/features/toolchain.prf \
 		C:/Users/ASUS/Documents/Qt/5.12.2/mingw73_64/mkspecs/features/default_pre.prf \
@@ -409,6 +410,7 @@ C:/Users/ASUS/Documents/Qt/5.12.2/mingw73_64/mkspecs/features/qt_functions.prf:
 C:/Users/ASUS/Documents/Qt/5.12.2/mingw73_64/mkspecs/features/qt_config.prf:
 C:/Users/ASUS/Documents/Qt/5.12.2/mingw73_64/mkspecs/win32-g++/qmake.conf:
 C:/Users/ASUS/Documents/Qt/5.12.2/mingw73_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 C:/Users/ASUS/Documents/Qt/5.12.2/mingw73_64/mkspecs/features/exclusive_builds.prf:
 C:/Users/ASUS/Documents/Qt/5.12.2/mingw73_64/mkspecs/features/toolchain.prf:
 C:/Users/ASUS/Documents/Qt/5.12.2/mingw73_64/mkspecs/features/default_pre.prf:

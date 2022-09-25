@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGraphicsView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -26,6 +27,7 @@ public:
     QWidget *centralwidget;
     QGraphicsView *graphicsView;
     QPushButton *pushButton;
+    QLabel *cronometro;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -44,15 +46,17 @@ public:
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(650, 120, 75, 23));
         QFont font;
-        font.setFamily(QString::fromUtf8("Palace Script MT"));
         font.setPointSize(16);
         font.setItalic(true);
         pushButton->setFont(font);
         pushButton->setAutoFillBackground(false);
+        cronometro = new QLabel(centralwidget);
+        cronometro->setObjectName(QString::fromUtf8("cronometro"));
+        cronometro->setGeometry(QRect(650, 40, 81, 20));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 21));
+        menubar->setGeometry(QRect(0, 0, 800, 25));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -67,6 +71,7 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
         pushButton->setText(QApplication::translate("MainWindow", "Mover", nullptr));
+        cronometro->setText(QApplication::translate("MainWindow", "cronometro", nullptr));
     } // retranslateUi
 
 };

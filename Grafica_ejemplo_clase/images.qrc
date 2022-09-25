@@ -5,5 +5,7 @@
         <file>images/pacamanarri.png</file>
         <file>images/pacmanaba.png</file>
         <file>images/pacmanizq.png</file>
+        <file>images/Manzana.png</file>
+        <file>images/Inicio_Pacman.jpg</file>
     </qresource>
 </RCC>

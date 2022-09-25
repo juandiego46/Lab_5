@@ -15,6 +15,7 @@ private:
 
 public:
     soldado(QGraphicsItem *carr=0);
+
     void posicion();
     void posicion(int x_1, int y_1);
 
