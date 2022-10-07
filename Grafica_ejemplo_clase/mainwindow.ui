@@ -40,31 +40,9 @@
      <rect>
       <x>20</x>
       <y>20</y>
-      <width>600</width>
-      <height>600</height>
+      <width>510</width>
+      <height>510</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>650</x>
-      <y>120</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-      <italic>true</italic>
-     </font>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="text">
-     <string>Mover</string>
     </property>
    </widget>
    <widget class="QLabel" name="cronometro">
@@ -126,7 +104,6 @@
     </property>
     <property name="font">
      <font>
-      <family>Segoe UI Semilight</family>
       <pointsize>12</pointsize>
       <bold>false</bold>
      </font>

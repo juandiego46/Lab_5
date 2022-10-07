@@ -18,16 +18,8 @@ MainWindow::MainWindow(QWidget *parent)
     scene->setSceneRect(0,0,500,500);
     ui->graphicsView->setScene(scene);
 
-
-
-    //scene->addRect(scene->sceneRect());
-
     QPen Color2(Qt::green);
 
-    vector<QGraphicsRectItem*> barras;
-
-    //barras.append(new QGraphicsRectItem(-13,-100,127,68));
-    //barras.last();
     barras.push_back(barra);
 
     barra = new QGraphicsRectItem(0,0,0,-490); //VerticialIzquierda #-190,200
@@ -299,18 +291,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->graphicsView->setBackgroundBrush(QBrush((QImage(":/images/Mapa.jpg"))));
 
-    /*
-    timer = new QTimer();
-    timer->stop();
-    connect(timer, SIGNAL(timeout()),this,SLOT(hmov()));
-    */
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(actualizarCronometro()));
     timer->start(1000);
-
-    resultadoFinal();
-
 }
 
 
@@ -345,14 +329,20 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
                         qDebug() << "Colision con una manzana";
                         setPuntos(getPuntos(),1);
                         ui->puntosNum->display(getPuntos());
+                        grupoManzanas.removeOne(manzana);
+                        scene->removeItem(manzana);
+                        qDebug() << "Manzanas= " << grupoManzanas.size();
+                        resultadoFinal();
                         delete manzana;
 
                     }
                     else{
+
                         qDebug() << "Colision con el mapa";
                     }
                 }
                 jugador->posicion();
+
             }
         }
     }
@@ -367,14 +357,20 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
                     qDebug() << "Colision con una manzana";
                     setPuntos(getPuntos(),1);
                     ui->puntosNum->display(getPuntos());
+                    grupoManzanas.removeOne(manzana);
+                    scene->removeItem(manzana);
+                    qDebug() << "Manzanas= " << grupoManzanas.size();
+                    resultadoFinal();
                     delete manzana;
 
                 }
                 else{
                     qDebug() << "Colision con el mapa";
+
                 }
             }
             jugador->posicion();
+
         }
         else{
             jugador->setY(jugador->getY()-vel);
@@ -395,6 +391,10 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
                         qDebug() << "Colision con una manzana";
                         setPuntos(getPuntos(),1);
                         ui->puntosNum->display(getPuntos());
+                        grupoManzanas.removeOne(manzana);
+                        scene->removeItem(manzana);
+                        qDebug() << "Manzanas= " << grupoManzanas.size();
+                        resultadoFinal();
                         delete manzana;
 
 
@@ -422,6 +422,10 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
                         qDebug() << "Colision con una manzana";
                         setPuntos(getPuntos(),1);
                         ui->puntosNum->display(getPuntos());
+                        grupoManzanas.removeOne(manzana);
+                        scene->removeItem(manzana);
+                        qDebug() << "Manzanas= " << grupoManzanas.size();
+                        resultadoFinal();
                         delete manzana;
 
                     }
@@ -437,13 +441,15 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     jugador->posicion();
 }
 
-
-void MainWindow::hmov(){
-    if (jugador->getX() > (scene->width()-36)) vel = -1*vel;
-    else if (jugador->getX() < 0) vel = -1*vel;
-    jugador->posicion(jugador->getX()+vel, jugador->getY());
+int MainWindow::getNnivel() const
+{
+    return Nnivel;
 }
 
+void MainWindow::setNnivel(int newNnivel)
+{
+    Nnivel = newNnivel;
+}
 
 
 void MainWindow::inicioJuego()
@@ -451,259 +457,18 @@ void MainWindow::inicioJuego()
     actualizarCronometro();
     time.setHMS(0,1,0);
 
-    time.setHMS(0,10,20);
+    time.setHMS(0,0,30);
     ui->temporizador->setText(time.toString("m:ss"));
     timer->start(1000);
 
+    niveles(1);
 
-    jugador = new soldado();
-    jugador->posicion(240,220);
-    scene->addItem(jugador);
-
-    comida = new Manzanas;
-    comida->posicionManzana(5,10);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(100,10);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(200,10);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(300,10);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(400,10);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(465,10);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(5,80);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-    /*
-    comida = new Manzanas;
-    comida->posicionManzana(100,80);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(200,80);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(300,80);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(400,80);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(465,80);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(5,130);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(100,130);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(200,130);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(300,130);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(400,130);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(465,130);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(300,130);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(5,225);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(100,225);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(320,225);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(400,225);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(465,225);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(5,325);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(100,325);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(200,325);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(300,325);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(400,325);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(465,325);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(5,370);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(100,370);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(200,370);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(300,370);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(425,370);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(5,420);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(100,420);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(200,420);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(300,420);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(400,420);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(465,420);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(5,465);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(100,465);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(200,465);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(300,465);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(400,465);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-
-    comida = new Manzanas;
-    comida->posicionManzana(465,465);
-    scene->addItem(comida);
-    grupoManzanas.push_back(comida);
-    */
 
     QTimer *timerInicio = new QTimer(this);
     connect(timerInicio, SIGNAL(timeout()), this, SLOT());
 
     ui->puntosNum->display(getPuntos());
     ui->puntosLit->setText("Puntos: ");
-
-    resultadoFinal();
-
 }
 
 
@@ -723,35 +488,201 @@ void MainWindow::actualizarCronometro()
         if(QMessageBox::No == msgBox.exec()){
             QCoreApplication::quit();
         }
-        else{
-            delete jugador;
-            delete comida;
+        else if(QMessageBox::Yes == msgBox.exec()){
+            scene->removeItem(jugador);
+            for(auto it : grupoManzanas){
+                scene->removeItem(it);
+            }
             setPuntos(0);
             inicioJuego();
+
         }
     }
+
 }
 
 void MainWindow::resultadoFinal()
 {
-    if(grupoManzanas.size() <= 0){
-        msgBox.setWindowTitle("Juego termiando");
-        msgBox.setIcon(QMessageBox::Information);
-        msgBox.setStandardButtons(QMessageBox::Yes);
-        msgBox.addButton(QMessageBox::No);
-        msgBox.setDefaultButton(QMessageBox::Yes);
-        msgBox.setText("Enhorabuena! ha ganado, ¿volver a jugar?");
-        if(QMessageBox::No == msgBox.exec()){
-            QCoreApplication::quit();
+    if(grupoManzanas.size() == 0){
+        timer->stop();
+        if(getNnivel() == 1){
+            msgBox.setWindowTitle("Juego termiando");
+            msgBox.setIcon(QMessageBox::Information);
+            msgBox.setStandardButtons(QMessageBox::Yes);
+            msgBox.addButton(QMessageBox::No);
+            msgBox.setDefaultButton(QMessageBox::Yes);msgBox.setText("Enhorabuena! ha ganado, pasas a nivel 2 ¿quieres jugar?");
+            if(QMessageBox::No == msgBox.exec()){
+                QCoreApplication::quit();
+            }
+            else if(QMessageBox::Yes == msgBox.exec()){
+                scene->removeItem(jugador);
+                for(auto it : grupoManzanas){
+                    scene->removeItem(it);
+                }
+                niveles(2);
+                setPuntos(0);
+
+            }
         }
-        else{
-            delete jugador;
-            delete comida;
-            setPuntos(0);
-            inicioJuego();
+        else if(getNnivel() == 2){
+            msgBox.setWindowTitle("Juego termiando");
+            msgBox.setIcon(QMessageBox::Information);
+            msgBox.setText("Ya completaste todos los niveles, sos un crack");
+            msgBox.addButton(QMessageBox::Close);
+            if(QMessageBox::Close == msgBox.exec()){
+                QCoreApplication::quit();
+            }
+            else if(QMessageBox::Yes == msgBox.exec()){
+                QCoreApplication::quit();
+            }
+            else if(QMessageBox::No == msgBox.exec()){
+                QCoreApplication::quit();
+            }
         }
     }
 
+}
+
+void MainWindow::niveles(int nivel)
+{
+    if(nivel == 1){
+
+        actualizarCronometro();
+        time.setHMS(0,1,0);
+
+        time.setHMS(0,0,30);
+        ui->temporizador->setText(time.toString("m:ss"));
+        timer->start(1000);
+
+        jugador = new soldado();
+        jugador->posicion(240,220);
+        scene->addItem(jugador);
+
+        comida = new Manzanas;
+        comida->posicionManzana(200,10);
+        scene->addItem(comida);
+        grupoManzanas.push_back(comida);
+
+        comida = new Manzanas;
+        comida->posicionManzana(400,10);
+        scene->addItem(comida);
+        grupoManzanas.push_back(comida);
+    }
+    else{
+
+        actualizarCronometro();
+        time.setHMS(0,1,0);
+
+        time.setHMS(0,5,30);
+        ui->temporizador->setText(time.toString("m:ss"));
+        timer->start(1000);
+
+        setPuntos(0);
+        ui->puntosNum->display(getPuntos());
+        setNnivel(2);
+        qDebug() << "Numero de nivel: = " << getNnivel();
+
+        jugador = new soldado();
+        jugador->posicion(240,220);
+        scene->addItem(jugador);
+
+
+        comida = new Manzanas;
+        comida->posicionManzana(200,10);
+        scene->addItem(comida);
+        grupoManzanas.push_back(comida);
+
+
+        comida = new Manzanas;
+        comida->posicionManzana(400,10);
+        scene->addItem(comida);
+        grupoManzanas.push_back(comida);
+
+        comida = new Manzanas;
+        comida->posicionManzana(200,80);
+        scene->addItem(comida);
+        grupoManzanas.push_back(comida);
+
+
+        comida = new Manzanas;
+        comida->posicionManzana(400,130);
+        scene->addItem(comida);
+        grupoManzanas.push_back(comida);
+
+
+        comida = new Manzanas;
+        comida->posicionManzana(5,225);
+        scene->addItem(comida);
+        grupoManzanas.push_back(comida);
+
+        comida = new Manzanas;
+        comida->posicionManzana(100,225);
+        scene->addItem(comida);
+        grupoManzanas.push_back(comida);
+
+        comida = new Manzanas;
+        comida->posicionManzana(320,225);
+        scene->addItem(comida);
+        grupoManzanas.push_back(comida);
+
+
+        comida = new Manzanas;
+        comida->posicionManzana(465,225);
+        scene->addItem(comida);
+        grupoManzanas.push_back(comida);
+
+        /*
+        comida = new Manzanas;
+        comida->posicionManzana(200,325);
+        scene->addItem(comida);
+        grupoManzanas.push_back(comida);
+
+        comida = new Manzanas;
+        comida->posicionManzana(300,325);
+        scene->addItem(comida);
+        grupoManzanas.push_back(comida);
+
+        comida = new Manzanas;
+        comida->posicionManzana(400,325);
+        scene->addItem(comida);
+        grupoManzanas.push_back(comida);
+
+        comida = new Manzanas;
+        comida->posicionManzana(5,370);
+        scene->addItem(comida);
+        grupoManzanas.push_back(comida);
+
+        comida = new Manzanas;
+        comida->posicionManzana(300,370);
+        scene->addItem(comida);
+        grupoManzanas.push_back(comida);
+
+        comida = new Manzanas;
+        comida->posicionManzana(425,370);
+        scene->addItem(comida);
+        grupoManzanas.push_back(comida);
+
+        comida = new Manzanas;
+        comida->posicionManzana(200,420);
+        scene->addItem(comida);
+        grupoManzanas.push_back(comida);
+
+        comida = new Manzanas;
+        comida->posicionManzana(400,420);
+        scene->addItem(comida);
+        grupoManzanas.push_back(comida);
+
+        comida = new Manzanas;
+        comida->posicionManzana(5,465);
+        scene->addItem(comida);
+        grupoManzanas.push_back(comida);
+
+        comida = new Manzanas;
+        comida->posicionManzana(300,465);
+        scene->addItem(comida);
+        grupoManzanas.push_back(comida);
+        */
+    }
 }
 
 int MainWindow::getPuntos()
@@ -787,12 +718,6 @@ void MainWindow::on_pushButton_clicked()
     if(timer->isActive()) timer->stop();
     else timer->start(50);
 
-
-    /*
-    timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(activationTimer(9)));
-    timer->start(500);
-    */
 }
 
 

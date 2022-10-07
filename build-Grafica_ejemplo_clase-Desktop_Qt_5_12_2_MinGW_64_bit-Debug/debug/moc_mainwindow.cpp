@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[7];
-    char stringdata0[87];
+    QByteArrayData data[8];
+    char stringdata0[96];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,15 +34,16 @@ static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
 QT_MOC_LITERAL(1, 11, 21), // "on_pushButton_clicked"
 QT_MOC_LITERAL(2, 33, 0), // ""
-QT_MOC_LITERAL(3, 34, 4), // "hmov"
-QT_MOC_LITERAL(4, 39, 11), // "inicioJuego"
-QT_MOC_LITERAL(5, 51, 20), // "actualizarCronometro"
-QT_MOC_LITERAL(6, 72, 14) // "resultadoFinal"
+QT_MOC_LITERAL(3, 34, 11), // "inicioJuego"
+QT_MOC_LITERAL(4, 46, 20), // "actualizarCronometro"
+QT_MOC_LITERAL(5, 67, 14), // "resultadoFinal"
+QT_MOC_LITERAL(6, 82, 7), // "niveles"
+QT_MOC_LITERAL(7, 90, 5) // "nivel"
 
     },
     "MainWindow\0on_pushButton_clicked\0\0"
-    "hmov\0inicioJuego\0actualizarCronometro\0"
-    "resultadoFinal"
+    "inicioJuego\0actualizarCronometro\0"
+    "resultadoFinal\0niveles\0nivel"
 };
 #undef QT_MOC_LITERAL
 
@@ -64,14 +65,14 @@ static const uint qt_meta_data_MainWindow[] = {
        3,    0,   40,    2, 0x08 /* Private */,
        4,    0,   41,    2, 0x08 /* Private */,
        5,    0,   42,    2, 0x08 /* Private */,
-       6,    0,   43,    2, 0x08 /* Private */,
+       6,    1,   43,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,    7,
 
        0        // eod
 };
@@ -83,14 +84,13 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_pushButton_clicked(); break;
-        case 1: _t->hmov(); break;
-        case 2: _t->inicioJuego(); break;
-        case 3: _t->actualizarCronometro(); break;
-        case 4: _t->resultadoFinal(); break;
+        case 1: _t->inicioJuego(); break;
+        case 2: _t->actualizarCronometro(); break;
+        case 3: _t->resultadoFinal(); break;
+        case 4: _t->niveles((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 QT_INIT_METAOBJECT const QMetaObject MainWindow::staticMetaObject = { {

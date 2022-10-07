@@ -10,7 +10,7 @@
 #include "soldado.h"
 #include "manzanas.h"
 #include <QMessageBox>
-#include <vector>
+#include <QVector>
 
 
 QT_BEGIN_NAMESPACE
@@ -29,24 +29,28 @@ public:
 
     int tiempo = 30;
 
+    int Nnivel = 1;
 
     int getPuntos();
     int getPuntos(int n);
     void setPuntos(int newPuntos);
     void setPuntos(int n, int suma);
 
-    vector<Manzanas*> grupoManzanas;
+    QVector<QGraphicsRectItem*> barras;
+
+    QVector<Manzanas*> grupoManzanas;
+
+    int getNnivel() const;
+    void setNnivel(int newNnivel);
 
 private slots:
 
     void on_pushButton_clicked();
 
-    void hmov();
-
     void inicioJuego();
     void actualizarCronometro();
     void resultadoFinal();
-
+    void niveles(int nivel);
 
 
 private:

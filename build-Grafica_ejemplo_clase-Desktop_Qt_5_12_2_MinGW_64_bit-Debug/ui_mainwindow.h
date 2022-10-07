@@ -27,7 +27,6 @@ class Ui_MainWindow
 public:
     QWidget *centralwidget;
     QGraphicsView *graphicsView;
-    QPushButton *pushButton;
     QLabel *cronometro;
     QPushButton *botonInicio;
     QLabel *temporizador;
@@ -52,15 +51,7 @@ public:
         graphicsView = new QGraphicsView(centralwidget);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
         graphicsView->setEnabled(true);
-        graphicsView->setGeometry(QRect(20, 20, 600, 600));
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(650, 120, 75, 23));
-        QFont font;
-        font.setPointSize(16);
-        font.setItalic(true);
-        pushButton->setFont(font);
-        pushButton->setAutoFillBackground(false);
+        graphicsView->setGeometry(QRect(20, 20, 510, 510));
         cronometro = new QLabel(centralwidget);
         cronometro->setObjectName(QString::fromUtf8("cronometro"));
         cronometro->setGeometry(QRect(650, 40, 81, 20));
@@ -70,27 +61,26 @@ public:
         temporizador = new QLabel(centralwidget);
         temporizador->setObjectName(QString::fromUtf8("temporizador"));
         temporizador->setGeometry(QRect(660, 40, 91, 41));
-        QFont font1;
-        font1.setPointSize(14);
-        font1.setBold(true);
-        temporizador->setFont(font1);
+        QFont font;
+        font.setPointSize(14);
+        font.setBold(true);
+        temporizador->setFont(font);
         puntosNum = new QLCDNumber(centralwidget);
         puntosNum->setObjectName(QString::fromUtf8("puntosNum"));
         puntosNum->setEnabled(true);
         puntosNum->setGeometry(QRect(720, 250, 71, 71));
-        QFont font2;
-        font2.setFamily(QString::fromUtf8("Segoe UI Semilight"));
-        font2.setPointSize(12);
-        font2.setBold(false);
-        puntosNum->setFont(font2);
+        QFont font1;
+        font1.setPointSize(12);
+        font1.setBold(false);
+        puntosNum->setFont(font1);
         puntosNum->setContextMenuPolicy(Qt::DefaultContextMenu);
         puntosLit = new QLabel(centralwidget);
         puntosLit->setObjectName(QString::fromUtf8("puntosLit"));
         puntosLit->setGeometry(QRect(630, 270, 81, 20));
-        QFont font3;
-        font3.setPointSize(12);
-        font3.setBold(true);
-        puntosLit->setFont(font3);
+        QFont font2;
+        font2.setPointSize(12);
+        font2.setBold(true);
+        puntosLit->setFont(font2);
         puntosLit->setTextFormat(Qt::AutoText);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
@@ -109,7 +99,6 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
-        pushButton->setText(QApplication::translate("MainWindow", "Mover", nullptr));
         cronometro->setText(QString());
         botonInicio->setText(QApplication::translate("MainWindow", "Inicio", nullptr));
         temporizador->setText(QApplication::translate("MainWindow", "C.regresiva", nullptr));
